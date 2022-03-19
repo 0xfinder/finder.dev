@@ -1,28 +1,33 @@
 {
-  "name": "website",
-  "version": "1.0.0",
-  "private": true,
-  "description": "website",
-  "author": "finder",
-  "keywords": [
-    "gatsby"
-  ],
-  "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
-  },
-  "dependencies": {
-    "@mdx-js/mdx": "^1.6.22",
-    "@mdx-js/react": "^1.6.22",
-    "gatsby": "^4.10.0",
-    "gatsby-plugin-mdx": "^3.10.1",
-    "gatsby-plugin-postcss": "^5.10.0",
-    "gatsby-source-filesystem": "^4.10.0",
-    "postcss": "^8.4.12",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  }
+    "name": "finder",
+    "version": "1.0.0",
+    "private": true,
+    "description": "thoughts and stuff",
+    "author": "0xfinder",
+    "keywords": [
+        "gatsby"
+    ],
+    "scripts": {
+        "develop": "gatsby develop",
+        "start": "yarn develop",
+        "build": "gatsby build",
+        "serve": "gatsby serve",
+        "clean": "gatsby clean"
+    },
+    "dependencies": {
+        "@mdx-js/mdx": "^1.6.22",
+        "@mdx-js/react": "^1.6.22",
+        "gatsby": "^4.10.0",
+        "gatsby-plugin-image": "^2.10.0",
+        "gatsby-plugin-mdx": "^3.10.1",
+        "gatsby-plugin-postcss": "^5.10.0",
+        "gatsby-plugin-sharp": "^4.10.1",
+        "gatsby-source-filesystem": "^4.10.0",
+        "postcss": "^8.4.12",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-icons": "^4.3.1"
+    },
+    "main": "index.js",
+    "license": "MIT"
 }
