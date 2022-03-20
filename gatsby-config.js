@@ -1,14 +1,15 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Finder`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `0xfinder`,
+      summary: `summary`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    description: `lemao`,
     siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `0xfinder`,
+      github: `0xfinder`,
     },
   },
   plugins: [
@@ -27,6 +28,52 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [".md", ".mdx"],
+      },
+    },
+    // {
+    //   resolve: `gatsby-plugin-mdx`,
+    //   options: {
+    //     extensions: [".md", ".mdx"],
+    //     gatsbyRemarkPlugins: [
+    //       {
+    //         resolve: `gatsby-remark-images`,
+    //         options: {
+    //           maxWidth: 800,
+    //           backgroundColor: "transparent",
+    //           withWebp: {
+    //             quality: 95,
+    //           },
+    //         },
+    //       },
+    //       {
+    //         resolve: `gatsby-remark-responsive-iframe`,
+    //         options: {
+    //           wrapperStyle: `margin-bottom: 1.0725rem`,
+    //         },
+    //       },
+    //       {
+    //         resolve: "gatsby-remark-external-links",
+    //         options: {
+    //           target: "_blank",
+    //           rel: "nofollow noopener external",
+    //         },
+    //       },
+    //       `gatsby-remark-copy-linked-files`,
+    //       `gatsby-remark-smartypants`,
+    //     ],
+    //     rehypePlugins: [
+    //       // Generate heading ids for rehype-autolink-headings
+    //       require("rehype-slug"),
+    //       // To pass options, use a 2-element array with the
+    //       // configuration in an object in the second element
+    //       [require("rehype-autolink-headings"), { behavior: "wrap" }],
+    //     ],
+    //   },
+    // },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -51,6 +98,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-remark-reading-time`,
     // {
     //   resolve: `gatsby-plugin-google-analytics`,
     //   options: {
@@ -74,38 +122,41 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
-                return Object.assign({}, node.frontmatter, {
-                  description: node.excerpt,
-                  date: node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.description,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
                 })
               })
             },
             query: `
               {
-                allMarkdownRemark(
+                allMdx(
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
-                  nodes {
-                    excerpt
-                    html
-                    fields {
-                      slug
-                    }
-                    frontmatter {
-                      title
-                      date
+                  edges {
+                    node {
+                      description
+                      html
+                      fields {
+                        slug
+                      }
+                      frontmatter {
+                        title
+                        date
+                        description
+                      }
                     }
                   }
                 }
               }
             `,
             output: "/rss.xml",
-            title: "Gatsby Starter Blog RSS Feed",
+            title: "Finder",
           },
         ],
       },
@@ -113,10 +164,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Finder`,
+        short_name: `Finder`,
         start_url: `/`,
-        background_color: `#ffffff`,
+        background_color: `#000000`,
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
@@ -125,8 +176,5 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }
