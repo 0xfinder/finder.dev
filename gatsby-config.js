@@ -14,6 +14,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-image`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -24,56 +25,50 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        name: `assets`,
+        path: `${__dirname}/content/assets`,
       },
     },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [".md", ".mdx"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+              backgroundColor: "transparent",
+              withWebp: {
+                quality: 95,
+              },
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          // {
+          //   resolve: "gatsby-remark-external-links",
+          //   options: {
+          //     target: "_blank",
+          //     rel: "nofollow noopener external",
+          //   },
+          // },
+          `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-smartypants`,
+        ],
+        // rehypePlugins: [
+        //   // Generate heading ids for rehype-autolink-headings
+        //   require("rehype-slug"),
+        //   // To pass options, use a 2-element array with the
+        //   // configuration in an object in the second element
+        //   [require("rehype-autolink-headings"), { behavior: "wrap" }],
+        // ],
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-mdx`,
-    //   options: {
-    //     extensions: [".md", ".mdx"],
-    //     gatsbyRemarkPlugins: [
-    //       {
-    //         resolve: `gatsby-remark-images`,
-    //         options: {
-    //           maxWidth: 800,
-    //           backgroundColor: "transparent",
-    //           withWebp: {
-    //             quality: 95,
-    //           },
-    //         },
-    //       },
-    //       {
-    //         resolve: `gatsby-remark-responsive-iframe`,
-    //         options: {
-    //           wrapperStyle: `margin-bottom: 1.0725rem`,
-    //         },
-    //       },
-    //       {
-    //         resolve: "gatsby-remark-external-links",
-    //         options: {
-    //           target: "_blank",
-    //           rel: "nofollow noopener external",
-    //         },
-    //       },
-    //       `gatsby-remark-copy-linked-files`,
-    //       `gatsby-remark-smartypants`,
-    //     ],
-    //     rehypePlugins: [
-    //       // Generate heading ids for rehype-autolink-headings
-    //       require("rehype-slug"),
-    //       // To pass options, use a 2-element array with the
-    //       // configuration in an object in the second element
-    //       [require("rehype-autolink-headings"), { behavior: "wrap" }],
-    //     ],
-    //   },
-    // },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -105,6 +100,19 @@ module.exports = {
     //     trackingId: `ADD YOUR TRACKING ID HERE`,
     //   },
     // },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Finder`,
+        short_name: `Finder`,
+        start_url: `/`,
+        background_color: `#000000`,
+        // https://css-tricks.com/meta-theme-color-and-trickery/
+        theme_color: `#112130`,
+        display: `minimal-ui`,
+        icon: `content/assets/favicon.png`,
+      },
+    },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -140,7 +148,6 @@ module.exports = {
                 ) {
                   edges {
                     node {
-                      description
                       html
                       fields {
                         slug
@@ -161,20 +168,5 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Finder`,
-        short_name: `Finder`,
-        start_url: `/`,
-        background_color: `#000000`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
-    },
-    `gatsby-plugin-react-helmet`,
   ],
 }

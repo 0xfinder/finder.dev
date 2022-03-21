@@ -9,8 +9,6 @@ const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMdx.edges
 
-  console.log(posts)
-
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
@@ -34,14 +32,6 @@ const BlogIndex = ({ data, location }) => {
                   </h2>
                   <small>{node.frontmatter.date}</small>
                 </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: node.frontmatter.description || node.description,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
               </article>
             </li>
           )
