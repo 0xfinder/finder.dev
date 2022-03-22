@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-starter-blog-dev-mdx",
-  "private": false,
-  "description": "A starter for a dev blog powered by Gatsby and MDX",
+  "name": "finder",
+  "private": true,
+  "description": "thoughts and stuff",
   "version": "0.1.0",
-  "author": "Anna Rossetti <hi@annarossetti.com>",
+  "author": "Finder",
   "bugs": {
-    "url": "https://github.com/rossettiquette/gatsby-starter-blog-dev-mdx/issues"
+    "url": "https://github.com/0xfinder/finder.dev/issues"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
@@ -40,7 +40,7 @@
     "gh-pages": "^3.2.3",
     "prettier": "2.2.1"
   },
-  "homepage": "https://github.com/rossettiquette/gatsby-starter-blog-dev-mdx",
+  "homepage": "https://0xfinder.github.io/",
   "keywords": [
     "gatsby",
     "gatsby-plugin",
@@ -53,7 +53,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rossettiquette/gatsby-starter-blog-dev-mdx"
+    "url": "git+https://github.com/0xfinder/finder.dev.git"
   },
   "scripts": {
     "build": "gatsby build",
