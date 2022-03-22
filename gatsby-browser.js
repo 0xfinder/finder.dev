@@ -6,5 +6,6 @@ import "./src/normalize.css"
 // custom CSS styles
 import "./src/style.css"
 
-// Highlighting for code blocks
-import "prismjs/themes/prism.css"
+import { wrapRootElement as wrap } from "./wrap-root-element"
+
+export const wrapRootElement = wrap

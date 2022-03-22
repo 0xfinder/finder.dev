@@ -1,14 +1,14 @@
-import * as React from "react"
+import React from "react"
 import { Link, graphql } from "gatsby"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import { MDXRenderer } from "gatsby-plugin-mdx"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.mdx
-  const siteTitle = data.site.siteMetadata?.title
+  const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
 
   return (
@@ -78,32 +78,27 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)
-      html
+      body
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         description
       }
-      body
     }
     previous: mdx(id: { eq: $previousPostId }) {
-      id
-      excerpt(pruneLength: 160)
-      html
+      fields {
+        slug
+      }
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
-        description
       }
     }
     next: mdx(id: { eq: $nextPostId }) {
-      id
-      excerpt(pruneLength: 160)
-      html
+      fields {
+        slug
+      }
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
-        description
       }
     }
   }
