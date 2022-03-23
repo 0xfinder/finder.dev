@@ -1,8 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -28,9 +26,7 @@ const BlogPostTemplate = ({ data, location }) => {
         </header>
         <MDXRenderer>{post.body}</MDXRenderer>
         <hr />
-        <footer>
-          <Bio />
-        </footer>
+        <footer></footer>
       </article>
       <nav className="blog-post-nav">
         <ul

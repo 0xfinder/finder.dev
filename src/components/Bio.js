@@ -1,6 +1,6 @@
 import React from "react"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { useStaticQuery, graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
 import { RiGithubFill, RiTwitterFill } from "react-icons/ri"
 
 const Bio = () => {
@@ -11,16 +11,7 @@ const Bio = () => {
 
   return (
     <div className="bio">
-      <StaticImage
-        className="bio-avatar"
-        layout="fixed"
-        formats={["AUTO", "WEBP", "AVIF"]}
-        src="../../content/assets/finder.png"
-        width={50}
-        height={50}
-        quality={95}
-        alt="Profile picture"
-      />
+      <GatsbyImage image={data.avatar.data.gatsbyImageData} alt="Avy" />
       {author?.name && (
         <p>
           Written by
@@ -38,6 +29,17 @@ export default Bio
 
 const staticQuery = graphql`
   query BioQuery {
+    avatar: file(absolutePath: { regex: "/avatars/finder.png/" }) {
+      data: childImageSharp {
+        gatsbyImageData(
+          width: 280
+          height: 280
+          layout: FIXED
+          quality: 100
+          placeholder: TRACED_SVG
+        )
+      }
+    }
     site {
       siteMetadata {
         author {

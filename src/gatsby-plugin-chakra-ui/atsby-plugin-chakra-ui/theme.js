@@ -16,6 +16,20 @@ const baseColors = {
       light: "#38404e",
     },
   },
+  bg: {
+    100: {
+      light: "#f3f3f3",
+      dark: "#141621",
+    },
+    300: {
+      light: "#e2e9ec",
+      dark: "#181b2b",
+    },
+    500: {
+      light: "#E5E7EB",
+      dark: "#232735",
+    },
+  },
 }
 
 const fontFamily =
@@ -25,9 +39,10 @@ export default extendTheme({
   colors: {
     ...baseColors,
     primary: "#ffb347",
+    backgroundColor: "#142621",
   },
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "light",
     useSystemColorMode: false,
   },
   fonts: {

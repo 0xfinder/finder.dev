@@ -1,3 +1,5 @@
+const path = require("path")
+
 module.exports = {
   siteMetadata: {
     title: `Finder`,
@@ -14,6 +16,12 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-image`,
+    {
+      resolve: "gatsby-plugin-root-import",
+      options: {
+        "@assets": path.join(__dirname, "content", "assets"),
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -117,25 +125,10 @@ module.exports = {
         name: `Finder`,
         short_name: `Fndr`,
         start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
+        // background_color: `#ffffff`,
+        // theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `content/assets/favicon.png`,
-      },
-    },
-    {
-      resolve: "@chakra-ui/gatsby-plugin",
-      options: {
-        /**
-         * @property {boolean} [resetCSS=true]
-         * if false, this plugin will not use `<CSSReset />
-         */
-        resetCSS: false,
-        /**
-         * @property {boolean} [isUsingColorMode=true]
-         * if false, this plugin will not use <ColorModeProvider />
-         */
-        isUsingColorMode: true,
       },
     },
     `gatsby-plugin-react-helmet`,
