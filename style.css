@@ -30,8 +30,8 @@
   --fontFamily-sans: Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
-    Times, serif;
+  --fontFamily-serif: "Wotfard", "Georgia", Cambria, "Times New Roman", Times,
+    serif;
   --font-body: var(--fontFamily-serif);
   --font-heading: var(--fontFamily-sans);
   --fontWeight-normal: 400;
@@ -330,4 +330,16 @@ a:focus {
   ol {
     list-style-position: inside;
   }
+}
+
+@font-face {
+  font-family: "Wotfard";
+  src: url("/fonts/wotfard/wotfard-regular-webfont.eot");
+  src: url("/fonts/wotfard/wotfard-regular-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/fonts/wotfard/wotfard-regular-webfont.woff2") format("woff2"),
+    url("/fonts/wotfard/wotfard-regular-webfont.ttf") format("truetype");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
 }

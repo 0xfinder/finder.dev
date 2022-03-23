@@ -9,6 +9,7 @@ module.exports = {
     siteUrl: `https://0xfinder.github.io/`,
     social: {
       twitter: `0xfinder`,
+      github: `0xfinder`,
     },
   },
   plugins: [
@@ -49,6 +50,7 @@ module.exports = {
         extensions: [`.md`, `.mdx`],
       },
     },
+    // "gatsby-remark-reading-time",
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     // {
@@ -118,13 +120,25 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/favicon.png`, // This path is relative to the root of the site.
+        icon: `content/assets/favicon.png`,
+      },
+    },
+    {
+      resolve: "@chakra-ui/gatsby-plugin",
+      options: {
+        /**
+         * @property {boolean} [resetCSS=true]
+         * if false, this plugin will not use `<CSSReset />
+         */
+        resetCSS: false,
+        /**
+         * @property {boolean} [isUsingColorMode=true]
+         * if false, this plugin will not use <ColorModeProvider />
+         */
+        isUsingColorMode: true,
       },
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-gatsby-cloud`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }
