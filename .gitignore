@@ -68,5 +68,6 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-# Blog post drafts
+# Post drafts
 drafts
+misc

@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-import Footer from "./footer"
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -25,7 +24,6 @@ const Layout = ({ location, title, children }) => {
     <div className="global-wrapper" data-is-root-path={isRootPath}>
       <header className="global-header">{header}</header>
       <main>{children}</main>
-      <Footer></Footer>
     </div>
   )
 }

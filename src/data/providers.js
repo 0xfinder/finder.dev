@@ -1,7 +1,6 @@
 import React from "react"
-import initialTheme from "./theme"
 
-export const defaultTheme = initialTheme
+export const defaultTheme = "dark"
 
 export const ThemeProvider = React.createContext({
   theme: defaultTheme,
