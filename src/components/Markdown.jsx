@@ -9,7 +9,7 @@ import { Box, Flex, Grid, Heading, Text } from "@chakra-ui/layout"
 import { layoutContentPadding } from "./Layout"
 import { Image } from "@chakra-ui/image"
 import { forwardRef } from "@chakra-ui/system"
-import { Tooltip, useTooltip } from "@chakra-ui/tooltip"
+import { Tooltip } from "@chakra-ui/tooltip"
 import typescript from "@assets/tech/typescript.png"
 import javascript from "@assets/tech/javascript.png"
 import haskell from "@assets/tech/haskell.png"
@@ -63,7 +63,6 @@ export const WideBanner = forwardRef((props, ref) => {
     children,
     centered,
     bordered,
-    className = "",
     inner = {},
     noBg,
     noPadding,
@@ -134,7 +133,6 @@ export function DiscordReaction({
   const [reacts, setReacts] = React.useState(reactCount)
   const [reacted, setReacted] = React.useState(_reacted)
   let mounted = useRef()
-  const t = useTooltip()
   React.useEffect(() => {
     mounted.current = true
   }, [])
@@ -388,9 +386,6 @@ const calculateLinesToHighlight = meta => {
 
 function Code({ children, className, metastring }) {
   const shouldDisplayLineNumbers = useBreakpointValue([false, false, true])
-  // basically I want to be able to declare objects here without adding quotes to keys
-  // which json5 allows me to do but json5 has a really big bundle size so I don't want to use it
-  // please forgive me for my sins javascript gods
   const extraProps = eval(`(${metastring ?? "{}"})`)
   const { theme } = useContext(ThemeProvider)
   if (typeof extraProps.lang === "undefined") {
