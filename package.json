@@ -40,6 +40,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.3.1",
     "react-live": "^2.2.3",
+    "react-rough-notation": "^1.0.2",
     "typeface-jetbrains-mono": "^2.0.1",
     "typeface-montserrat": "0.0.75",
     "typeface-sriracha": "^1.1.13"

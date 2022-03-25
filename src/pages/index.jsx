@@ -5,6 +5,7 @@ import Bio from "../components/Bio"
 import Layout from "../components/Layout"
 import Seo from "../components/seo"
 import PostList from "../components/PostList"
+import { Grid, Stack } from "@chakra-ui/react"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -14,9 +15,13 @@ const BlogIndex = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
       <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => (<PostList node={post} key={post.id} />))}
-      </ol>
+      <Stack as="section" flexFlow="column" spacing={6} width="100%">
+        <Grid gap={10}>
+          {posts.map(post => (
+            <PostList node={post} key={post.id} />
+          ))}
+        </Grid>
+      </Stack>
     </Layout>
   )
 }
