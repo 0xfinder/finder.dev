@@ -3,54 +3,74 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-const Seo = ({ description, lang, meta, title }) => {
+const Seo = ({ description, lang = "en", title, canonical }) => {
   const { site } = useStaticQuery(staticQuery)
 
+  const { siteUrl } = site.siteMetadata
   const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const siteTitle = title || site.siteMetadata.title
 
+  const data = [
+    {
+      name: `description`,
+      content: metaDescription,
+    },
+    {
+      name: `og:siteTitle`,
+      content: siteTitle,
+    },
+    {
+      name: `og:description`,
+      content: metaDescription,
+    },
+    {
+      name: "og:site_name",
+      content: "Finder",
+    },
+    {
+      name: `twitter:card`,
+      content: `summary_large_image`,
+    },
+    {
+      name: `twitter:creator`,
+      content: site.siteMetadata.social.twitter,
+    },
+    {
+      name: "twitter:site",
+      content: site.siteMetadata.social.twitter,
+    },
+    {
+      name: `twitter:siteTitle`,
+      content: siteTitle,
+    },
+    {
+      name: `twitter:description`,
+      content: metaDescription,
+    },
+    {
+      name: "og:title",
+      content: siteTitle,
+    },
+    {
+      name: "og:description",
+      content: metaDescription,
+    },
+  ]
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata?.social?.twitter || ``,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+    >
+      {data.map(({ name, content }) => (
+        <meta name={name} content={content} key={name} />
+      ))}
+      {canonical && (
+        <link rel="canonical" href={new URL(canonical, siteUrl).href} />
+      )}
+      <meta name="theme-color" content={site.siteMetadata.themeColor} />
+    </Helmet>
   )
 }
 
@@ -73,7 +93,9 @@ const staticQuery = graphql`
   query {
     site {
       siteMetadata {
+        siteUrl
         title
+        themeColor
         description
         social {
           twitter

@@ -1,5 +1,7 @@
 const path = require("path")
 
+const themeColor = `#112130`
+
 module.exports = {
   siteMetadata: {
     title: `Finder`,
@@ -14,6 +16,7 @@ module.exports = {
       github: `0xfinder`,
       keybase: `0xfinder`,
     },
+    themeColor,
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -126,7 +129,7 @@ module.exports = {
         short_name: `Fndr`,
         start_url: `/`,
         // background_color: `#ffffff`,
-        // theme_color: `#663399`,
+        theme_color: themeColor,
         display: `minimal-ui`,
         icon: `content/assets/favicon.png`,
       },

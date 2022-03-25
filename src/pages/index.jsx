@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-
+import { Helmet } from "react-helmet"
 import Bio from "../components/Bio"
 import { Layout, LayoutContent } from "../components/Layout"
 import Seo from "../components/Seo"
@@ -10,12 +10,15 @@ import { RiGithubFill, RiRssFill } from "react-icons/ri"
 import ExternalLink from "../components/ExternalLink"
 
 const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+  const siteTitle = data.site.siteMetadata?.title || `Finder`
   const posts = data.allMdx.nodes
 
   return (
     <Layout>
-      <Seo title={siteTitle} />
+      <Seo canonical="/" title={siteTitle} />
+      <Helmet>
+        <title>{siteTitle}</title>
+      </Helmet>
       <LayoutContent
         maxWidth="1200px"
         margin={["0 auto", null, "5% auto", "8% auto"]}
