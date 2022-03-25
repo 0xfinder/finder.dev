@@ -12,6 +12,7 @@ module.exports = {
     social: {
       twitter: `0xfinder`,
       github: `0xfinder`,
+      keybase: `0xfinder`,
     },
   },
   plugins: [

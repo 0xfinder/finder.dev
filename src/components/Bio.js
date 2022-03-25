@@ -3,11 +3,12 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { useStaticQuery, graphql } from "gatsby"
 import { Flex, Heading, Link, Stack, Text } from "@chakra-ui/layout"
 import { RiGithubFill, RiTwitterFill } from "react-icons/ri"
+import { SiKeybase } from "react-icons/si"
 
 const Bio = () => {
   const data = useStaticQuery(staticQuery)
 
-  const { twitter, github } = data.site.siteMetadata?.social
+  const { twitter, github, keybase } = data.site.siteMetadata?.social
   const image = (
     <Flex
       borderRadius="md"
@@ -68,6 +69,14 @@ const Bio = () => {
           >
             <RiTwitterFill size={28} />
           </Link>
+          <Link
+            href={`https://keybase.io/${keybase}`}
+            color="unset"
+            _hover={{ color: "brand.100" }}
+            aria-label="keybase link"
+          >
+            <SiKeybase size={28} />
+          </Link>
         </Stack>
       </Stack>
     </>
@@ -99,6 +108,7 @@ const staticQuery = graphql`
         social {
           twitter
           github
+          keybase
         }
       }
     }
