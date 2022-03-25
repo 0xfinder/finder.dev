@@ -1,31 +1,57 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Box, Flex, Grid } from "@chakra-ui/layout"
+import { forwardRef } from "@chakra-ui/system"
+import { domAnimation, LazyMotion } from "framer-motion"
+import { transition } from "../data/theme"
 
-const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  const isRootPath = location.pathname === rootPath
-  let header
-
-  if (isRootPath) {
-    header = (
-      <h1 className="main-heading">
-        <Link to="/">{title}</Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <Link className="header-link-home" to="/">
-        {title}
-      </Link>
-    )
-  }
-
+export const Hr = forwardRef((props, ref) => {
   return (
-    <div className="global-wrapper" data-is-root-path={isRootPath}>
-      <header className="global-header">{header}</header>
-      <main>{children}</main>
-    </div>
+    <Box
+      as="hr"
+      my={3}
+      transition={transition}
+      background="borderSubtle"
+      border="none"
+      height="1px"
+      {...props}
+      ref={ref}
+    />
+  )
+})
+
+export const layoutContentPadding = [6, 8]
+
+export const LayoutContent = forwardRef((props, ref) => {
+  return (
+    <Box width="100%" overflow="hidden">
+      <Grid
+        as="main"
+        color="text.100"
+        fontWeight="regular"
+        gap={12}
+        p={layoutContentPadding}
+        ref={ref}
+        {...props}
+      >
+        {props.children}
+      </Grid>
+    </Box>
+  )
+})
+
+export function Layout({
+  children,
+  header,
+  imageTop,
+  imageBottom,
+  article,
+  ...rest
+}) {
+  return (
+    <Flex flexFlow="column nowrap">
+      <LazyMotion features={domAnimation}>
+        <Box {...rest}>{children}</Box>
+      </LazyMotion>
+    </Flex>
   )
 }
-
-export default Layout

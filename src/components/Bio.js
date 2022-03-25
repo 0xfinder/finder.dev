@@ -37,11 +37,11 @@ const Bio = () => {
             >
               National Service
             </Link>{" "}
-            in my free time. I like write code.
+            in my free time. I like writing code.
           </Text>
           <Text>
-            I'm a degenerate weeb, I like bunny girls. I also enjoy design and
-            writing on the side when I can find the time.
+            Weeb programmer. I also enjoy ceiling observing and writing on the
+            side when I have the time.
           </Text>
           <Text>
             As of{" "}
