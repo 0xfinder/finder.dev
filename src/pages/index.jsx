@@ -49,7 +49,7 @@ const BlogIndex = ({ data, location }) => {
                 color="text.300"
                 fontSize="xs"
                 mr={2}
-                href="https://github.com/xetera/xetera.dev"
+                href="https://github.com/0xfinder/finder.dev"
               >
                 View the site's code
               </ExternalLink>
