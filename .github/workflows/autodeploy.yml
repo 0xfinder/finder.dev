@@ -1,0 +1,13 @@
+name: "Autodeploy"
+
+on:
+  schedule:
+    - cron: "30 9 * * *"
+
+jobs:
+  deploy:
+    name: "Deploy to Gh pages"
+    runs-on: ubuntu-latest
+    steps:
+      - name: build script
+        run: yarn deploy
