@@ -6,8 +6,8 @@ on:
 
 jobs:
   deploy:
-    name: "Deploy to Gh pages"
+    name: "deploy to gatsby"
     runs-on: ubuntu-latest
     steps:
-      - name: build script
-        run: yarn deploy
+      - name: Curl request
+        run: curl -X POST -d {} ${{ secrets.GATSBY_BUILD_HOOK }}
