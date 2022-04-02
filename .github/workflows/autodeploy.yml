@@ -33,6 +33,7 @@ on:
 #               run: yarn deploy
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     steps:
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v0.1.4
