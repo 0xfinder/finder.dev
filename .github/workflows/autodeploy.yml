@@ -1,64 +1,12 @@
 name: "Autodeploy"
 
 on:
-  [push, pull_request]
-  # schedule:
-  #   - cron: "30 9 * * *"
-
-# jobs:
-#   deploy:
-#     name: "deploy to gatsby"
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Curl request
-#         run: curl -X POST -d {} ${{ secrets.GATSBY_BUILD_HOOK }}
-
-# jobs:
-#     deploy:
-#         name: Mai
-#         runs-on: ubuntu-latest
-#         steps:
-#             - uses: actions/checkout@v2
-#               with:
-#                   submodules: recursive
-
-#             - uses: actions/setup-node@v2
-#               with:
-#                   node-version: "16.14.0"
-
-#             - name: Install dependencies
-#               run: yarn install
-
-#             - name: Deploy
-#               run: yarn deploy
+  schedule:
+    - cron: "30 12 * * *"
 jobs:
   deploy:
+    name: "deploy to gatsby"
     runs-on: ubuntu-latest
     steps:
-      - name: SSH Remote Commands
-        uses: appleboy/ssh-action@v0.1.4
-        # env:
-        #   PASS: ${{ secrets.PASSWORD }}
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          timeout: 1200s
-          command_timeout: 20m
-          script: |
-            git clone https://github.com/0xfinder/finder.dev.git
-            cd finder.dev
-
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "16.14.0"
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Deploy
-        run: yarn deploy
+      - name: Curl request
+        run: curl -X POST -d {} ${{ secrets.GATSBY_BUILD_HOOK }}
