@@ -1,13 +1,32 @@
 name: "Autodeploy"
 
-on:
-  schedule:
-    - cron: "30 9 * * *"
+on: [push, pull_request]
+  # schedule:
+  #   - cron: "30 9 * * *"
+
+# jobs:
+#   deploy:
+#     name: "deploy to gatsby"
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Curl request
+#         run: curl -X POST -d {} ${{ secrets.GATSBY_BUILD_HOOK }}
 
 jobs:
-  deploy:
-    name: "deploy to gatsby"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Curl request
-        run: curl -X POST -d {} ${{ secrets.GATSBY_BUILD_HOOK }}
+    deploy:
+        name: Mai
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  submodules: recursive
+
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: "16.14.0"
+
+            - name: Install dependencies
+              run: yarn install
+
+            - name: Deploy
+              run: yarn deploy
