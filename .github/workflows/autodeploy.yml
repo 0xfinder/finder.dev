@@ -1,6 +1,7 @@
 name: "Autodeploy"
 
-on: [push, pull_request]
+on:
+  [push, pull_request]
   # schedule:
   #   - cron: "30 9 * * *"
 
@@ -33,30 +34,30 @@ on: [push, pull_request]
 jobs:
   deploy:
     steps:
-        - name: SSH Remote Commands
-          uses: appleboy/ssh-action@v0.1.4
-          # env:
-          #   PASS: ${{ secrets.PASSWORD }}
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USERNAME }}
-            key: ${{ secrets.KEY }}
-            timeout: 1200s
-            command_timeout: 20m
-            script: |
-              git clone https://github.com/0xfinder/finder.dev.git
-              cd finder.dev
-              
-          - uses: actions/checkout@v2
-            with:
-                submodules: recursive
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v0.1.4
+        # env:
+        #   PASS: ${{ secrets.PASSWORD }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          timeout: 1200s
+          command_timeout: 20m
+          script: |
+            git clone https://github.com/0xfinder/finder.dev.git
+            cd finder.dev
 
-          - uses: actions/setup-node@v2
-            with:
-                node-version: "16.14.0"
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
-          - name: Install dependencies
-            run: yarn install
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.14.0"
 
-          - name: Deploy
-            run: yarn deploy
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Deploy
+        run: yarn deploy
